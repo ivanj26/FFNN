@@ -23,7 +23,7 @@ class Sequential:
     try:
       self.optimizer.fit(x, y, epochs, batch_size)
     except (TypeError, AttributeError):
-      print('Optimizer is still unknown, cannot build model')
+      print('Optimizer is still unknown, cannot fit data')
 
   def predict(self, x):
     self.optimizer.predict(x)
