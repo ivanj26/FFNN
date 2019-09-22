@@ -1,5 +1,5 @@
-from util.activation_fun import sigmoid
-from node import Node
+from model.util.activation_fun import sigmoid
+from model.node import Node
 
 class Layer:
   def __init__(self, nb_neurons = 1, activation = 'sigmoid'):

@@ -1,4 +1,4 @@
-from optimizer.minibatchgd import MiniBatchGD
+from model.optimizer.minibatchgd import MiniBatchGD
 
 class Sequential:
   def __init__(self, layers = []):

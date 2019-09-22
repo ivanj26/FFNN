@@ -7,7 +7,7 @@ class Node:
     self.activation = activation
   
   def rand_weights(self, dimension: int):
-    for i in range(dimension):
+    for _ in range(dimension):
       self.weights.append(np.random.rand())
 
   def calc_dot_prod(self, x):
