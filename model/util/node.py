@@ -4,6 +4,8 @@ class Node:
   def __init__(self, activation):
     self.bias = np.random.rand()
     self.weights = []
+    self.net = 0
+    self.error = 0
     self.activation = activation
   
   def rand_weights(self, dimension: int):
@@ -18,4 +20,9 @@ class Node:
     return sum + self.bias
 
   def calc_net(self, x):
-    return self.activation(self.calc_dot_prod(x))
+    self.net = self.activation(self.calc_dot_prod(x))
+    return self.net
+
+  def calc_error(self):
+    # to be define
+    pass

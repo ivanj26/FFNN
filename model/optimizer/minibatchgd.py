@@ -4,7 +4,7 @@ class MiniBatchGD:
     self.momentum = momentum
     self.layers = layers
   
-  def fit(self, x, y):
+  def fit(self, x, y, epochs, batch_size):
     pass
 
   def predict(self, x):
