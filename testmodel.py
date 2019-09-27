@@ -3,7 +3,7 @@ from model.util.layer import Layer
 import numpy as np
 
 x = [[0.1, 0.9]]
-y = [0.9]
+y = [[0.9]]
 
 model = Sequential([
   Layer(2),
@@ -13,5 +13,7 @@ model = Sequential([
 model.compile()
 model.fit(
   x,
-  y
+  y,
+  epochs=1,
+  batch_size=1
 )

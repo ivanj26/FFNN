@@ -7,7 +7,20 @@ class MiniBatchGD:
     self.layers = layers
   
   def fit(self, x, y, epochs, batch_size):
+    # Init weights for node(s) in all layers
     self.init_weights(x)
+
+    # Start training data
+    for epoch in range(epochs):
+      mini_batches = self.create_mini_batches(x, y, batch_size)
+      for mini_batch in mini_batches:
+        x_mini, y_mini = mini_batch
+
+        # for every data (features and output target) in the mini batch
+        for x_i, y_i in zip(x_mini, y_mini):
+          output = self.layers[0].feed_forward(x_i)
+          for i in range(1, len(self.layers)):
+            output = self.layers[i].feed_forward(output)
 
   def predict(self, x):
     pass
