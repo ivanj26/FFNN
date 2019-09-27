@@ -3,6 +3,8 @@ import numpy as np
 class Node:
   def __init__(self, activation):
     self.bias = np.random.rand()
+    self.delta_weights = []
+    self.gradient = 0
     self.weights = []
     self.net = 0
     self.error = 0
@@ -16,13 +18,14 @@ class Node:
     sum = 0
     for i in range(len(x)):
       sum += (x[i] * self.weights[i])
-
     return sum + self.bias
 
   def calc_net(self, x):
     self.net = self.activation(self.calc_dot_prod(x))
     return self.net
 
-  def calc_error(self):
-    # to be define
-    pass
+  def calc_error(self, diff):
+    self.gradient = self.net * (1.0 - self.net) * diff
+    return self.gradient
+
+  def calc_delta_weights(self, delta, learning_rate, momentum):
