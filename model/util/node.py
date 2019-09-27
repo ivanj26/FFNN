@@ -1,9 +1,9 @@
 import numpy as np
 
 class Node:
-  def __init__(self, activation):
-    self.bias = np.random.rand()
-    self.weights = []
+  def __init__(self, activation, weights=[], bias=np.random.rand()):
+    self.bias = bias
+    self.weights = weights
     self.net = 0
     self.error = 0
     self.activation = activation
