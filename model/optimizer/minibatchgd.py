@@ -20,13 +20,15 @@ class MiniBatchGD:
           # pass output of layer to the next one
           for i in range(1, len(self.layers)):
             output = self.layers[i].feed_forward(output)
-          print(output)          
+          print(output)
           # calculate mean_squared_error
-          # error = 0.5 * (output[0] - y_i) * (output[0] - y_i)
-          # error_list.append(error)
-          # # back propagate
-          # deltas = [y_i - output[0]]
-          # weights = [1]
+          error = 0.5 * (output[0] - y_i) * (output[0] - y_i)
+          error_list.append(error)
+          # back propagate
+          gradients = [y_i - output[0]]
+          weights = [[1]]
+          for i in range(len(self.layers) - 1, -1, -1):
+            weights, gradients = self.layers[i].back_propagate(weights, gradients)
           
 
         
