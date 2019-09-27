@@ -12,14 +12,14 @@ class Node:
     for _ in range(dimension):
       self.weights.append(np.random.rand())
 
-  def calc_dot_prod(self, x):
+  def calc_dot_prod(self, x = []):
     sum = 0
     for i in range(len(x)):
       sum += (x[i] * self.weights[i])
 
     return sum + self.bias
 
-  def calc_net(self, x):
+  def calc_net(self, x = []):
     self.net = self.activation(self.calc_dot_prod(x))
     return self.net
 
