@@ -1,8 +1,9 @@
 import numpy as np
 
 class Node:
-  def __init__(self, activation):
+  def __init__(self, activation, bias):
     self.bias = np.random.rand()
+    self.bias = bias
     self.delta_weights = []
     self.gradient = 0
     self.weights = []
@@ -29,3 +30,7 @@ class Node:
     return self.gradient
 
   def calc_delta_weights(self, delta, learning_rate, momentum):
+    pass
+
+  def set_weights(self, w):
+    self.weights = w

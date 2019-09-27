@@ -21,6 +21,7 @@ class MiniBatchGD:
           for i in range(1, len(self.layers) - 1):
             output = self.layers[i].feed_forward(output)
           # calculate mean_squared_error
+          print(output)
           error = 0.5 * (output[0] - y_i) * (output[0] - y_i)
           error_list.append(error)
           # back propagate

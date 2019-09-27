@@ -3,14 +3,15 @@ from model.util.node import Node
 import numpy as np
 
 class Layer:
-  def __init__(self, nb_neurons = 1, activation = 'sigmoid'):
+  def __init__(self, nb_neurons = 1, activation = 'sigmoid', neurons = []):
     self.nb_neurons = nb_neurons
     self.activation = None
 
     if (activation == 'sigmoid'):
       self.activation = sigmoid
     
-    self.neurons = [Node(self.activation) for i in range(self.nb_neurons)]
+    self.neurons = neurons
+    # self.neurons = [Node(self.activation) for i in range(self.nb_neurons)]
   
   def feed_forward(self, x_before):
     for neuron in self.neurons:
