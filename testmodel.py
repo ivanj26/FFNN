@@ -6,10 +6,11 @@ import numpy as np
 
 n11 = Node(sigmoid, 0.1)
 n11.set_weights([-0.2, 0.1])
+n11.init_delta_weights()
 
 n12 = Node(sigmoid, 0.1)
 n12.set_weights([-0.1, 0.3])
-
+n12.init_delta_weights()
 n1 = [n11, n12]
 
 l1 = Layer(2, neurons=n1)
@@ -18,6 +19,7 @@ l1 = Layer(2, neurons=n1)
 
 n21 = Node(sigmoid, 0.2)
 n21.set_weights([0.2, 0.3])
+n21.init_delta_weights()
 n2 = [n21]
 
 l2 = Layer(1, neurons=n2)
@@ -34,6 +36,6 @@ y = [[0.9]]
 model.fit(
   x,
   y,
-  1,
+  10,
   1,
 )

@@ -24,3 +24,13 @@ class Layer:
       weights.append(self.neurons[i].weights)
       gradients.append(self.neurons[i].gradient)
     return weights, gradients
+
+  def update_delta_weights(self, learning_rate, momentum, x_before = []):
+    for neuron in self.neurons:
+      neuron.calc_delta_weights(learning_rate = learning_rate, momentum = momentum, x=x_before)
+    return [n.net for n in self.neurons]
+
+  def update_delta_bias(self, learning_rate, momentum):
+    for neuron in self.neurons:
+      neuron.calc_delta_bias(learning_rate = learning_rate, momentum = momentum)
+    return [n.delta_bias for n in self.neurons]
