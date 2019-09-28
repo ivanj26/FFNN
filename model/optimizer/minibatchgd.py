@@ -15,9 +15,8 @@ class MiniBatchGD:
         error_list = []
         # for every data (features and output target) in the mini batch
         for x_i, y_i in zip(x_mini, y_mini):
-          # init feed forward from raw features
+          # feed forward
           output = self.layers[0].feed_forward(x_i)
-          # pass output of layer to the next one
           for i in range(1, len(self.layers)):
             output = self.layers[i].feed_forward(output)
           print("output",output)
@@ -51,7 +50,13 @@ class MiniBatchGD:
             self.layers[i].neurons[j].sum_delta_and_bias()
 
   def predict(self, x):
-    pass
+    outputs = []
+    for x_i in x:
+      output = self.layers[0].feed_forward(x_i)
+      for i in range(1, len(self.layers)):
+        output = self.layers[i].feed_forward(output)
+      outputs.append(output)
+    return outputs
 
   def create_mini_batches(self, x, y, batch_size): 
     mini_batches = [] 
@@ -70,4 +75,4 @@ class MiniBatchGD:
         x_mini = mini_batch[:, :-1] 
         y_mini = mini_batch[:, -1].reshape((-1, 1)) 
         mini_batches.append((x_mini, y_mini)) 
-    return mini_batches 
+    return mini_batches
