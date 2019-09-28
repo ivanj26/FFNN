@@ -8,7 +8,7 @@ class Sequential:
   def add(self, layer):
     self.layers.append(layer)
 
-  def compile(self, optimizer = 'MiniBatchGD', lr = 0.001, momentum = 0.01):
+  def compile(self, optimizer = 'MiniBatchGD', lr = 0.25, momentum = 0.0001):
     opt = None
 
     if (optimizer == 'MiniBatchGD'):
@@ -26,4 +26,4 @@ class Sequential:
       print('Optimizer is still unknown, cannot fit data')
 
   def predict(self, x):
-    self.optimizer.predict(x)
+    return self.optimizer.predict(x)
