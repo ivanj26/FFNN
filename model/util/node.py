@@ -15,7 +15,6 @@ class Node:
   def rand_weights(self, dimension: int):
     for _ in range(dimension):
       self.weights.append(np.random.rand())
-      print(len(self.weights))
       self.delta_weights.append(0)
       self.temp_delta_weights.append(0)   
 
