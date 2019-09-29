@@ -14,4 +14,4 @@ def binary_accuracy_score(y_true, y_pred):
         fn += 1
       else:
         fp += 1
-  return (float)(tp + tn) / (tp + tn + fp +fn)
+  return (tp + tn) / (tp + tn + fp +fn)

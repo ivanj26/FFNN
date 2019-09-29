@@ -54,7 +54,6 @@ class MiniBatchGD:
       output = self.layers[0].feed_forward(x_i)
       for i in range(1, len(self.layers)):
         output = self.layers[i].feed_forward(output)
-      print("output", output[0][0])
       outputs.append(output[0][0])
     return outputs
 
