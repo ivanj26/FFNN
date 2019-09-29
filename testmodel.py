@@ -5,11 +5,12 @@ from model.util.activation_fun import sigmoid
 
 import matplotlib.pyplot as plt
 from util.preprocess import preprocess
+from util.metrics import binary_accuracy_score
 import numpy as np
 
 x = [[0.1, 0.9]]
 y = [[0.9]]
-epochs = 1000
+epochs = 10
 
 X, y = preprocess('./test/data_weather.csv')
 
@@ -59,10 +60,13 @@ model.fit(
 # )
 
 # plotting cost (error)
-times = [i for i in range(len(model.optimizer.error_list))]
+times = [i for i in range(epochs)]
 
 plt.plot(times, model.optimizer.error_list)
 plt.show()
 
+y_pred = model.predict([X[0:2]])
+
 print('\n\nerror: {}'.format(model.optimizer.error_list.pop()))
-print('output predict {}: {}'.format(X[0], model.predict([X[0]])))
+print('output predict {}: {}'.format(X[0:2], y_pred))
+print('accuracy: {}'.format(binary_accuracy_score(y[0:2], y_pred)))

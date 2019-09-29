@@ -25,7 +25,6 @@ class MiniBatchGD:
 
           # calculate mean_squared_error
           error = 0.5 * (output[0] - y_i) * (output[0] - y_i)
-          self.error_list.append(error)
 
           # back propagate
           gradients = [y_i - output[0]]
@@ -45,6 +44,8 @@ class MiniBatchGD:
           for j in range(len(self.layers[i].neurons)):
             self.layers[i].neurons[j].sum_delta_and_weights()
             self.layers[i].neurons[j].sum_delta_and_bias()
+      # append error to list
+      self.error_list.append(error)
 
   def predict(self, x):
     outputs = []
@@ -54,28 +55,6 @@ class MiniBatchGD:
         output = self.layers[i].feed_forward(output)
       outputs.append(output)
     return outputs
-
-    def binary_accuracy_score(y_true, y_pred):
-      tp = 0
-      tn = 0
-      fn = 0
-      fp = 0
-      for y_t, y_p in zip(y_true, y_pred):
-        if y_true == round(y_pred) :
-          if y_true == 0:
-            tn += 1
-          else:
-            tp += 1
-        else:
-          if y_true == 0:
-            fn += 1
-          else:
-            fp += 1
-      return (tp + tn) / (tp + tn + fp +fn)
-
-
-
-
 
   def create_mini_batches(self, x, y, batch_size): 
     mini_batches = [] 
