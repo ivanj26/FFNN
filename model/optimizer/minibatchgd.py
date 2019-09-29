@@ -5,6 +5,7 @@ class MiniBatchGD:
     self.lr = lr
     self.momentum = momentum
     self.layers = layers
+    self.error_list = []
   
   def fit(self, x, y, epochs, batch_size):
     # Init weights for node(s) in all layers
@@ -15,7 +16,6 @@ class MiniBatchGD:
       mini_batches = self.create_mini_batches(x, y, batch_size) 
       for mini_batch in mini_batches: 
         x_mini, y_mini = mini_batch
-        error_list = []
         # for every data (features and output target) in the mini batch
         for x_i, y_i in zip(x_mini, y_mini):
           # feed forward
@@ -26,7 +26,7 @@ class MiniBatchGD:
           # calculate mean_squared_error
           error = 0.5 * (output[0] - y_i) * (output[0] - y_i)
           print("error", error)
-          error_list.append(error)
+          self.error_list.append(error)
           # back propagate
           gradients = [y_i - output[0]]
           weights = [[1]]

@@ -2,10 +2,12 @@ from model.sequential import Sequential
 from model.util.layer import Layer
 from model.util.node import Node
 from model.util.activation_fun import sigmoid
+import matplotlib.pyplot as plt
 import numpy as np
 
 x = [[0.1, 0.9]]
 y = [[0.9]]
+epochs = 1000
 
 # n11 = Node(sigmoid, [-0.2, 0.1], 0.1)
 # n12 = Node(sigmoid, [-0.1, 0.3], 0.1)
@@ -32,8 +34,14 @@ model.compile()
 model.fit(
   x,
   y,
-  epochs=1000,
+  epochs=epochs,
   batch_size=1
 )
+
+# plotting cost (error)
+times = [i for i in range(epochs)]
+
+plt.plot(times, model.optimizer.error_list)
+plt.show()
 
 print('\n\noutput predict {}: {}'.format(x[0], model.predict(x)))
