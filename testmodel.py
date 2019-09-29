@@ -66,6 +66,7 @@ plt.plot(times, model.optimizer.error_list)
 plt.show()
 
 y_pred = model.predict(X)
+
 print('\n\nerror: {}'.format(model.optimizer.error_list.pop()))
 print('output predict {}:\n{}'.format(X, y_pred))
 print('accuracy: {}'.format(binary_accuracy_score(y, y_pred)))
