@@ -10,7 +10,7 @@ import numpy as np
 
 x = [[0.1, 0.9]]
 y = [[0.9]]
-epochs = 10
+epochs = 1000
 
 X, y = preprocess('./test/data_weather.csv')
 
@@ -19,7 +19,7 @@ model = Sequential([
   Layer(5),
   Layer(5),
   Layer(5),
-  Layer(1),
+  Layer(1)
 ])
 
 model.compile()
@@ -27,7 +27,7 @@ model.fit(
   X,
   y,
   epochs=epochs,
-  batch_size=1
+  batch_size=7
 )
 
 # n11 = Node(sigmoid, [-0.2, 0.1], 0.1)
@@ -65,8 +65,8 @@ times = [i for i in range(epochs)]
 plt.plot(times, model.optimizer.error_list)
 plt.show()
 
-y_pred = model.predict([X[0:2]])
-
+y_pred = model.predict(X)
+print("y_pred", y_pred)
 print('\n\nerror: {}'.format(model.optimizer.error_list.pop()))
-print('output predict {}: {}'.format(X[0:2], y_pred))
-print('accuracy: {}'.format(binary_accuracy_score(y[0:2], y_pred)))
+print('output predict {}:\n{}'.format(X, y_pred))
+print('accuracy: {}'.format(binary_accuracy_score(y, y_pred)))

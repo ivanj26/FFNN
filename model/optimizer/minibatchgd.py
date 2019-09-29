@@ -18,13 +18,14 @@ class MiniBatchGD:
         x_mini, y_mini = mini_batch
         # for every data (features and output target) in the mini batch
         for x_i, y_i in zip(x_mini, y_mini):
+          error = 0
           # feed forward
           output = self.layers[0].feed_forward(x_i)
           for i in range(1, len(self.layers)):
             output = self.layers[i].feed_forward(output)
 
           # calculate mean_squared_error
-          error = 0.5 * (output[0] - y_i) * (output[0] - y_i)
+          error += 0.5 * (output[0] - y_i) * (output[0] - y_i)
 
           # back propagate
           gradients = [y_i - output[0]]
@@ -45,7 +46,7 @@ class MiniBatchGD:
             self.layers[i].neurons[j].sum_delta_and_weights()
             self.layers[i].neurons[j].sum_delta_and_bias()
       # append error to list
-      self.error_list.append(error)
+      self.error_list.append(error/len(error))
 
   def predict(self, x):
     outputs = []
@@ -53,7 +54,8 @@ class MiniBatchGD:
       output = self.layers[0].feed_forward(x_i)
       for i in range(1, len(self.layers)):
         output = self.layers[i].feed_forward(output)
-      outputs.append(output)
+      print("output", output[0][0])
+      outputs.append(output[0][0])
     return outputs
 
   def create_mini_batches(self, x, y, batch_size): 
