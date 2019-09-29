@@ -14,13 +14,14 @@ epochs = 1000
 X, y = preprocess('./test/data_weather.csv')
 
 model = Sequential([
-  Layer(2),
-  Layer(2),
-  Layer(2),
-  Layer(2),
+  Layer(5),
+  Layer(5),
+  Layer(5),
+  Layer(5),
   Layer(1),
 ])
 
+model.compile()
 model.fit(
   X,
   y,
